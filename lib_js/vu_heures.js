@@ -6,7 +6,7 @@ function VuHeures(x, y, r){
 
   this.draw = function (context){
     //We need this to start at HOUR 1
-    var angle = (- Math.PI / 2) + Math.PI / 12;
+    var angle = (3 * Math.PI / 2) + (Math.PI / 12);
     var cos_angle, sin_angle;
 
     for(var i = 1; i <= 24 ; i++){

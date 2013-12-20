@@ -5,10 +5,12 @@ function AiguilleSeconde (center_x, center_y, rayon_oclock, context){
   this.context = context;
 
   this.seconde_to_radian = function(){
-    var date = new Date();
+    var date = new Date() ; //Date(10,10,10,10,10,15);
     var secondes = date.getSeconds() + date.getMilliseconds()/1000;
     console.log(secondes);
-    return secondes * Math.PI / 180;
+
+    return (secondes * 180/30) * Math.PI / 180 - Math.PI/2;
+
   };
 
   this.draw = function(){

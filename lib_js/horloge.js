@@ -43,6 +43,10 @@ Horloge.init = function(){
   Horloge.update = function(){
     Horloge.canvas.width  = window.innerWidth - 10;
     Horloge.canvas.height = window.innerHeight - 10;
+    if(Horloge.canvas.width < 200)
+      Horloge.canvas.width = 200
+    if(Horloge.canvas.height < 200)
+      Horloge.canvas.height = 200
 
     Horloge.aiguille_secondes = new AiguilleSeconde(
       Horloge.canvas.width / 2,
