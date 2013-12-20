@@ -1,4 +1,4 @@
-function AiguilleSeconde (center_x, center_y, rayon_oclock, context){
+function AiguilleMinute (center_x, center_y, rayon_oclock, context){
   this.center_x = center_x;
   this.center_y = center_y;
   this.rayon_oclock = rayon_oclock;
@@ -6,17 +6,17 @@ function AiguilleSeconde (center_x, center_y, rayon_oclock, context){
 
   this.seconde_to_radian = function(){
     var date = new Date() ; //Date(10,10,10,10,10,15);
-    var secondes = date.getSeconds() + date.getMilliseconds()/1000;
-    //console.log(secondes);
+    var minutes = date.getMinutes() + date.getSeconds() / 60;
+    //console.log(minutes);
 
-    return (secondes * 180/30) * Math.PI / 180 - Math.PI/2;
+    return (minutes * 180/30) * Math.PI / 180 - Math.PI/2;
   };
 
   this.draw = function(){
     new VuAiguille(
       this.center_x,
       this.center_y,
-      this.rayon_oclock - 10
+      this.rayon_oclock - 100
     ).draw(this.context, this.seconde_to_radian())
   }
 

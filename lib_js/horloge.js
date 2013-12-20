@@ -3,14 +3,23 @@ window.Horloge = window.Horloge || {};
 window.onload = function(){
   Horloge.init();
   Horloge.update();
-  Horloge.dessine();
-  Horloge.dessine_aiguille();
+
+  var mainloop = function() {
+    Horloge.dessine();
+  };
+
+  var animFrame = window.requestAnimationFrame;
+
+  var recursiveAnim = function() {
+    mainloop();
+    animFrame( recursiveAnim );
+  };
+
+  animFrame( recursiveAnim );
 };
 
 window.onresize = function(){
   Horloge.update();
-  Horloge.dessine();
-  Horloge.dessine_aiguille();
 }
 
 Horloge.init = function(){
@@ -29,15 +38,15 @@ Horloge.init = function(){
   }
 
   Horloge.dessine = function(){
+    Horloge.context.clearRect(0, 0, Horloge.canvas.width, Horloge.canvas.height);
     new Cadran(
       Horloge.canvas.width / 2,
       Horloge.canvas.height / 2,
       Horloge.rayon()
     ).draw(Horloge.context);
-  }
-
-  Horloge.dessine_aiguille = function(){
     Horloge.aiguille_secondes.draw();
+    Horloge.aiguille_minutes.draw();
+    Horloge.aiguille_hours.draw();
   }
 
   Horloge.update = function(){
@@ -55,5 +64,18 @@ Horloge.init = function(){
       Horloge.context
     );
 
+    Horloge.aiguille_minutes = new AiguilleMinute(
+      Horloge.canvas.width / 2,
+      Horloge.canvas.height / 2,
+      Horloge.rayon(),
+      Horloge.context
+    );
+
+    Horloge.aiguille_hours = new AiguilleHour(
+      Horloge.canvas.width / 2,
+      Horloge.canvas.height / 2,
+      Horloge.rayon(),
+      Horloge.context
+    );
   }
 };
