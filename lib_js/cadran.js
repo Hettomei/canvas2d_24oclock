@@ -10,7 +10,7 @@ function Cadran(x , y, r){
     context.stroke();
 
     new Point(this.x, this.y).draw(context);
-    new Heures(this.x, this.y, this.rayon).draw(context);
+    new VuHeures(this.x, this.y, this.rayon).draw(context);
   };
 
 };

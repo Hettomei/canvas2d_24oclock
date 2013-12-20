@@ -1,4 +1,4 @@
-function Heures(x, y, r){
+function VuHeures(x, y, r){
   this.x = x;
   this.y = y;
   this.rayon = r;

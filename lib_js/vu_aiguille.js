@@ -1,4 +1,4 @@
-function Aiguille(x, y, rayon, width){
+function VuAiguille(x, y, rayon, width){
   this.x = x;
   this.y = y;
   this.rayon = rayon;
