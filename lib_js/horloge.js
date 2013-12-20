@@ -17,7 +17,7 @@ Horloge.init = function(){
   Horloge.canvas = document.getElementById('mon_canvas');
   Horloge.context = Horloge.canvas.getContext('2d');
 
-  Horloge.size_center_to_border = function(){
+  Horloge.rayon = function(){
     var size;
     if(Horloge.canvas.width < Horloge.canvas.height){
       size = Horloge.canvas.width / 2
@@ -32,30 +32,24 @@ Horloge.init = function(){
     new Cadran(
       Horloge.canvas.width / 2,
       Horloge.canvas.height / 2,
-      Horloge.size_center_to_border()
+      Horloge.rayon()
     ).draw(Horloge.context);
   }
 
-  Horloge.seconde_to_radian = function(){
-    var date = new Date();
-    var secondes = date.getSeconds() + date.getMilliseconds()/1000;
-    return secondes * Math.PI / 180;
-  }
-
   Horloge.dessine_aiguille = function(){
-    Horloge.aiguille_heure.draw(Horloge.context, Horloge.seconde_to_radian());
+    Horloge.aiguille_secondes.draw();
   }
 
   Horloge.update = function(){
     Horloge.canvas.width  = window.innerWidth - 10;
     Horloge.canvas.height = window.innerHeight - 10;
 
-    Horloge.aiguille_heure = new Aiguille(
+    Horloge.aiguille_secondes = new AiguilleSeconde(
       Horloge.canvas.width / 2,
       Horloge.canvas.height / 2,
-      Horloge.size_center_to_border(),
-      10
-    )
+      Horloge.rayon(),
+      Horloge.context
+    );
 
   }
 };
